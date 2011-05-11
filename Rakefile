@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "cruller"
   gem.homepage = "http://github.com/jalada/cruller"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{CoffeeScript compiler for lightweight web frameworks (like Sinatra)}
+  gem.description = %Q{Cruller compiles and caches CoffeeScript in a way that is friendly to deploying in a production environment}
   gem.email = "jalada@gmail.com"
   gem.authors = ["David Somers"]
   # dependencies defined in Gemfile
@@ -39,4 +39,5 @@ end
 task :default => :spec
 
 require 'yard'
-YARD::Rake::YardocTask.new
+y = YARD::Rake::YardocTask.new 
+y.options = ["-mmarkdown"]
