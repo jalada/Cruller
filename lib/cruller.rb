@@ -26,7 +26,7 @@ module Cruller
 
     # Configure Cruller, valid options are:
     #
-    # - *source*: the source directory (relative)
+    # - *source*: the source directory
     # - *destination*: the destination directory
     # - *compile*: when to compile CoffeeScript. Options are always, auto
     #   (based on modified time) and never (only use cache)

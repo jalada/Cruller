@@ -9,12 +9,12 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Somers"]
-  s.date = %q{2011-05-11}
+  s.date = %q{2011-05-12}
   s.description = %q{Cruller compiles and caches CoffeeScript in a way that is friendly to deploying in a production environment}
   s.email = %q{jalada@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.markdown"
+    "README.md"
   ]
   s.files = [
     ".document",
@@ -22,8 +22,10 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "cruller.gemspec",
     "lib/cruller.rb",
     "spec/cruller_spec.rb",
     "spec/spec_helper.rb",
@@ -43,6 +45,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<json>, [">= 0"])
       s.add_runtime_dependency(%q<coffee-script>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_development_dependency(%q<bluecloth>, [">= 0"])
       s.add_development_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
@@ -51,6 +54,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<coffee-script>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_dependency(%q<bluecloth>, [">= 0"])
       s.add_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
@@ -60,6 +64,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<json>, [">= 0"])
     s.add_dependency(%q<coffee-script>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+    s.add_dependency(%q<bluecloth>, [">= 0"])
     s.add_dependency(%q<yard>, ["~> 0.6.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.0"])

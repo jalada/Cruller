@@ -25,7 +25,7 @@ First, you'll need to **configure Cruller** (unless you are happy with it's defa
 
 Cruller takes 3 parameters:
 
- - `source`: the relative location where your CoffeeScript files are located.
+ - `source`: the location where your CoffeeScript files are located.
  - `destination`: where you want the compiled Javascript to be written to. Any
    existing Javascript files will be served from here too.
  - `compile`: Whether you want to **always** compile CoffeeScript when a request
@@ -45,12 +45,14 @@ Cruller couldn't find anything to brew or return to you.
 In a Sinatra app you might do something like this:
 
     configure do
-      Cruller.configure {:source => "views/coffeescripts",
-                         :destination => "public/javascripts"}
+      Cruller.configure({:source => "views/coffeescripts",
+                         :destination => "public/javascripts"})
     end
     
     get '/javascripts/:name.js' do
-      Cruller.brew(name)
+      result = Cruller.brew(params[:name])
+      pass if !result
+      result
     end
 
 ## Contributing to Cruller
