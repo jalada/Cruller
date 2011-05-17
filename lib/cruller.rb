@@ -4,6 +4,8 @@ require 'coffee-script'
 # handler class are available to the Cruller singleton.
 module Cruller
 
+  autoload :Server, 'cruller/server'
+
   private
   def self.handler(options={})
     @handler ||= Cruller::Handler.new(options)
@@ -20,6 +22,9 @@ module Cruller
   # Do not use the Handler class directly. Instead, call its methods using 
   # `Cruller.method_name`.
   class Handler
+
+    attr_accessor :path
+
     def initialize(options={})
       configure(options)
     end
@@ -28,6 +33,8 @@ module Cruller
     #
     # - *source*: the source directory
     # - *destination*: the destination directory
+    # - *path*: The URL path of the Javascript files (optional, required when
+    #   using Cruller with a Rack app) default `/javascripts`
     # - *compile*: when to compile CoffeeScript. Options are always, auto
     #   (based on modified time) and never (only use cache)
     def configure(options={})
@@ -40,6 +47,11 @@ module Cruller
       # you will only ever see the cached copy. On production, that's acceptable
       # obviously
       @destination = options[:destination] || File.join(".", "javascripts")
+      if options[:path]
+        @path = options[:path][0] == "/" ? options[:path] : "/" + options[:path]
+      else
+        @path = "/javascripts"
+      end
       # Always compile? Never compile? Automatically compile?
       @compile = options[:compile] || "auto"
     end

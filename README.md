@@ -17,17 +17,21 @@ development, but be bypassed in production.
 
 ## Usage
 
+### Standalone
+
 First, you'll need to **configure Cruller** (unless you are happy with it's defaults):
 
     Cruller.configure {:source => "path/to/coffeescripts",
                        :destination => "path/to/javascript/output",
+                       :path => "/url/for/javascripts",
                        :compile => "auto"}
 
-Cruller takes 3 parameters:
+Cruller takes 4 parameters:
 
  - `source`: the location where your CoffeeScript files are located.
  - `destination`: where you want the compiled Javascript to be written to. Any
    existing Javascript files will be served from here too.
+ - `path`: The URL for your Javascripts.
  - `compile`: Whether you want to **always** compile CoffeeScript when a request
    is made, **auto**matically compile it based on modified time, or **never**
    compile the CoffeeScript and only ever serve cached files.
@@ -40,20 +44,30 @@ It doesn't matter if the name has .coffee or .js in it. Cruller will strip that
 away. The command returns either the string of CoffeeScript, or `false` if 
 Cruller couldn't find anything to brew or return to you.
 
-## Example usage
+### Middleware
 
-In a Sinatra app you might do something like this:
+Cruller has some middleware that you can use in your Rack app which will allow
+you to compile CoffeeScript to a folder normally handled directly by the Rack
+server (e.g. the public directory):
 
-    configure do
-      Cruller.configure({:source => "views/coffeescripts",
-                         :destination => "public/javascripts"})
-    end
-    
-    get '/javascripts/:name.js' do
-      result = Cruller.brew(params[:name])
-      pass if !result
-      result
-    end
+    use Cruller::Server
+
+to your **config.ru** file before your actual Rack app, and then configure
+Cruller before your app serves any requests (otherwise it will use default
+settings) using `Cruller.configure`.
+
+### Sinatra
+
+In Sinatra you can use the middleware by adding the configuration + `use` call
+in your configure block. The following example would stop Cruller being used
+in production (reverting to the cache)
+
+    configure do |app|
+      Cruller.configure( {:source => "views/coffeescripts",
+                          :destination => "public/javascripts"} )
+
+      app.use Cruller::Server if settings.environment == :development
+    end 
 
 ## Contributing to Cruller
  
