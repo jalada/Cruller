@@ -1,4 +1,8 @@
-require 'coffee-script'
+begin
+  require 'coffee-script'
+rescue ExecJS::RuntimeUnavailable => e
+  warn "No JavaScript runtime, won't be compiling"
+end
 
 # Singleton module wrapper around the Handler class. Methods available in the
 # handler class are available to the Cruller singleton.
@@ -53,7 +57,11 @@ module Cruller
         @path = "/javascripts"
       end
       # Always compile? Never compile? Automatically compile?
-      @compile = options[:compile] || "auto"
+      if defined?(CoffeeScript)
+        @compile = options[:compile] || "auto"
+      else
+        @compile = "never"
+      end
     end
 
     # Brew a CoffeeScript file
