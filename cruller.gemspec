@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cruller}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Somers"]
-  s.date = %q{2011-05-17}
+  s.date = %q{2011-05-18}
   s.description = %q{Cruller compiles and caches CoffeeScript in a way that is friendly to deploying in a production environment}
   s.email = %q{jalada@gmail.com}
   s.extra_rdoc_files = [
