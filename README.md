@@ -72,7 +72,8 @@ in production (reverting to the cache)
 ### Ruby on Rails
 
 With Rails 3 you can either put the `use` line in your **config.ru** file as 
-above or you can add a config line in **application.rb**:
+above or you can add a config line in **application.rb** or **development.rb** if
+you just want Cruller to compile CoffeeScript in development:
 
     config.middleware.use Cruller::Server
 
