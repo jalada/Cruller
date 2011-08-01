@@ -69,6 +69,23 @@ in production (reverting to the cache)
       app.use Cruller::Server if settings.environment == :development
     end 
 
+### Ruby on Rails
+
+With Rails 3 you can either put the `use` line in your **config.ru** file as 
+above or you can add a config line in **application.rb**:
+
+    config.middleware.use Cruller::Server
+
+Then you can configure Cruller wherever you like. I add a file called **cruller.rb**
+to my initializers folder:
+
+    Cruller.configure({
+      :source => "app/views/coffeescripts",
+      :destination => "public/javascripts",
+      :path => "/javascripts",
+      :compile => "auto"
+    })
+
 ## Contributing to Cruller
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
